@@ -1,0 +1,46 @@
+server-name: "§e§lTHE HYPIXEL PIT"
+fall-damage: true # No fall damage
+PerunsStickCooldown: 5
+
+special-item-lore: §eSpecial item # §e is yellow
+mystic-well-displayname: §9Mystic Well
+
+freshPants-Lore: Used in the mystic well
+freshPants-Lore2: Also, a fashion statement
+
+ironZombieGoldReward: 30.05
+1/4diamondZombieGoldReward: 50.05
+ironZombieXPReward: 50
+1/4diamondZombieXPGoldReward: 100
+
+ironSkeletonGoldReward: 35.10
+1/4diamondSkeletonGoldReward: 55.25
+ironSkeletonXPReward: 55
+1/4diamondSkeletonXPGoldReward: 110
+
+PinkEveGoldReward: 50000.50
+PinkEveLightingStrikeDamage: 2 # True damage
+PinkEveMaxDogs: 72 # Max per world
+PinkEveMaxJimpys: 15 # Max per world
+PinkEveChatString: "<PinkEv3> "
+PinkEveStrikeLightingChatLines: ["It's a bit stormy out, you don't think?", "Minikloon has come to save me.", "Who needs perun's wrath?", "The Pit is fine - Minikloon"]
+PinkEveSpawnDogsChatLines: ["The man, the myth, the legend; COOPER.", "Cooper and Rocky came to visit from the underworld.", "A minor distraction for my epic escape."]
+PinkEvePotionAttackChatLines: ["Wait, let me heal!", "Your legs stopped working, huh?"]
+PinkEveSpawnSlimeChatLines: ["Jimpy won't bite!", "All praise the slime overlord; JIMPY!"]
+PinkEveDeathChatLines: ["You are so annoying.", "Goodbye, cruel world!", "Cooper will avenge me."]
+PinkEveDogNames: ["\"Cooper\"", "\"Rocky\"", "\"Buddy\""]
+PinkEveSlimeSize: 7
+PinkEveSlimeName: "JIMPY THE SLIME OVERLORD"
+
+UwUKieranGoldReward: 75000.75
+UwUKieranBhopTime: 12 # In seconds
+UwUKieranMaxBodyGuards: 30 # Max per world
+UwUKieranChatString: "<UwU_Kieran> "
+UwUKieranVenomChatLines: ["Venoms are my thing.", "This is going in my venom hunting montage."]
+UwUKieranPigmanAttackChatLines: ["You're about to get comboed by pigs.", "Where are my bodyguards?"]
+UwUKieranBhopAttackChatLines: ["Where's Watchdog?", "Astolfo is my favorite hack client for Pit."]
+UwUKieranTntAttackChatLines: ["Look above you.", "Don't worry, they aren't instabooms."]
+UwUKieranDeathChatLines: ["Goodbye Tree.", "You're on my kos list, prick.", "I lagged out!", "Enjoy being permed!"]
+UwUKieranPigmanNames: ["David", "Jeremy", "Louis"]
+
+VenomTime: 12 # In seconds

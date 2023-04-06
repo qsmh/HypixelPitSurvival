@@ -1,0 +1,38 @@
+name: TheHypixelPitSurvival
+version: '${project.version}'
+main: me.klb.thehypixelpitsurvival.TheHypixelPitSurvival
+api-version: 1.19
+authors: [ KLB ]
+description: Hypixel Pit in 1.19.2 survival
+commands:
+  smite:
+    description: Strikes lighting.
+    usage: /<command>
+    aliases: [lighting]
+    permission: smite
+  fly:
+    description: Toggles flight.
+    usage: /<command>
+    aliases: [f]
+    permission: fly
+  flyspeed:
+    description: Changes the speed of flight.
+    usage: /<command> int
+    aliases: [fs]
+    permission: flyspeed
+  god:
+    description: Toggles invincibility.
+    usage: /<command>
+    aliases: [g, godmode]
+    permission: god
+  menu:
+    description: Brings up an admin menu.
+    usage: /<command>
+    aliases: [m]
+    permission: menu
+  spawn:
+    description: Spawns a custom entity.
+    usage: /<spawn>
+    aliases: [spawnentity]
+    permission: spawn
+
