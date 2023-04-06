@@ -14,7 +14,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -29,8 +31,17 @@ import static org.bukkit.Bukkit.getServer;
 
 public class MysticWell implements Listener {
 
-    public void mysticWellUI(){
+    public void createMysticWellInventory(){
 
+    }
+
+    @EventHandler
+    public void onMysticWellInventoryClick(InventoryClickEvent event){
+        Inventory inventory = event.getInventory();
+
+        if (event.getView().getTitle().equals("Mystic Well")){
+            // Continue
+        }
     }
 
     @EventHandler
@@ -43,7 +54,7 @@ public class MysticWell implements Listener {
             return;
         }
 
-
+        createMysticWellInventory();
     }
 
     @EventHandler

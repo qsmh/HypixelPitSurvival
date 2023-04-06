@@ -7,6 +7,7 @@ import me.klb.thehypixelpitsurvival.customitems.itemMetaData.itemManager;
 import me.klb.thehypixelpitsurvival.customitems.itemProcedures.FirstAidEgg;
 import me.klb.thehypixelpitsurvival.customitems.itemProcedures.PerunsStick;
 import me.klb.thehypixelpitsurvival.customitems.itemProcedures.PhilosophersCactus;
+import me.klb.thehypixelpitsurvival.customitems.itemProcedures.YummyBone;
 import me.klb.thehypixelpitsurvival.listeners.*;
 import me.klb.thehypixelpitsurvival.megastreaks.uber.functions.UberDrop;
 import me.klb.thehypixelpitsurvival.mystics.darkpants.functions.DarkPantsVenom;
@@ -71,6 +72,7 @@ public final class TheHypixelPitSurvival extends JavaPlugin implements Listener 
 
         getServer().getPluginManager().registerEvents(new PerunsStick(), this);
         getServer().getPluginManager().registerEvents(new FirstAidEgg(), this);
+        getServer().getPluginManager().registerEvents(new YummyBone(), this);
 
         // Recipies
         MysticWell.addRecipeMysticWell();

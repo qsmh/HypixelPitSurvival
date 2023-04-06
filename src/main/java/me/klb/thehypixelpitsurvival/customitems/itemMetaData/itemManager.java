@@ -23,6 +23,7 @@ public class itemManager {
     public static ItemStack firstAidEggCooldown;
     public static ItemStack philosophersCactus;
     public static ItemStack chunkOfVile;
+    public static ItemStack yummyBone;
     public static ItemStack redFresh;
     public static ItemStack orangeFresh;
     public static ItemStack yellowFresh;
@@ -36,6 +37,7 @@ public class itemManager {
         createFirstAidEggCooldown();
         createPhilosophersCactus();
         createChunkOfVile();
+        createYummyBone();
         createRedFresh();
         createOrangeFresh();
         createYellowFresh();
@@ -155,6 +157,23 @@ public class itemManager {
 
         item.setItemMeta(meta);
         chunkOfVile = item;
+    }
+
+    private static void createYummyBone(){
+        ItemStack item = new ItemStack(Material.BONE, 64);
+        ItemMeta meta = item.getItemMeta();
+
+        meta.setDisplayName(ChatColor.WHITE + "Yummy Bone");
+        List<String> lore = new ArrayList<>();
+        lore.add(TheHypixelPitSurvival.getPlugin().getConfig().getString("special-item-lore"));
+        lore.add(ChatColor.GRAY + "Tame wolves instantly!");
+        meta.setLore(lore);
+
+        PersistentDataContainer itemData = meta.getPersistentDataContainer();
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "YummyBone");
+
+        item.setItemMeta(meta);
+        yummyBone = item;
     }
     private static void createRedFresh(){
         ItemStack item = new ItemStack(Material.LEATHER_LEGGINGS, 1);
