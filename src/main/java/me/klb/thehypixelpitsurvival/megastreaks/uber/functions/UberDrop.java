@@ -79,20 +79,17 @@ public class  UberDrop implements Listener {
 
         event.setCancelled(true);
 
+        World world = player.getWorld();
+
         String[] args = Objects.requireNonNull(UberDropData.get(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "UberDrop"), PersistentDataType.STRING)).split(" ");
         if (args.length == 3 && args[1].equalsIgnoreCase("Funky")) {
             try {
-                World world = player.getWorld();
-
                 int amount = Integer.parseInt(args[0].substring(2));
                 ItemStack funkyFeather = itemManager.funkyFeather.clone();
                 funkyFeather.setAmount(amount);
                 player.getInventory().addItem(funkyFeather);
                 UberDropItem.setAmount(UberDropItem.getAmount() - 1);
                 player.updateInventory();
-
-                world.spawnParticle(Particle.EXPLOSION_LARGE, UberDropBlock.getLocation(), 1);
-                world.playSound(UberDropBlock.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1, 1.3F);
                 return;
             } catch (NumberFormatException ignored) {
 
@@ -101,17 +98,12 @@ public class  UberDrop implements Listener {
 
         if (args.length == 3 && args[1].equalsIgnoreCase("Philosopher's")) {
             try {
-                World world = player.getWorld();
-
                 int amount = Integer.parseInt(args[0].substring(2));
                 ItemStack funkyFeather = itemManager.philosophersCactus.clone();
                 funkyFeather.setAmount(amount);
                 player.getInventory().addItem(funkyFeather);
                 UberDropItem.setAmount(UberDropItem.getAmount() - 1);
                 player.updateInventory();
-
-                world.spawnParticle(Particle.EXPLOSION_LARGE, UberDropBlock.getLocation(), 1);
-                world.playSound(UberDropBlock.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1, 1.3F);
             } catch (NumberFormatException ignored) {
 
             }
@@ -119,17 +111,12 @@ public class  UberDrop implements Listener {
 
         if (args.length == 3 && args[1].equalsIgnoreCase("Perun's")) {
             try {
-                World world = player.getWorld();
-
                 int amount = Integer.parseInt(args[0].substring(2));
                 ItemStack funkyFeather = itemManager.perunsStick.clone();
                 funkyFeather.setAmount(amount);
                 player.getInventory().addItem(funkyFeather);
                 UberDropItem.setAmount(UberDropItem.getAmount() - 1);
                 player.updateInventory();
-
-                world.spawnParticle(Particle.EXPLOSION_LARGE, UberDropBlock.getLocation(), 1);
-                world.playSound(UberDropBlock.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1, 1.3F);
             } catch (NumberFormatException ignored) {
 
             }
@@ -137,20 +124,18 @@ public class  UberDrop implements Listener {
 
         if (args.length == 4 && args[3].equalsIgnoreCase("Vile")) {
             try {
-                World world = player.getWorld();
-
                 int amount = Integer.parseInt(args[0].substring(2));
                 ItemStack funkyFeather = itemManager.chunkOfVile.clone();
                 funkyFeather.setAmount(amount);
                 player.getInventory().addItem(funkyFeather);
                 UberDropItem.setAmount(UberDropItem.getAmount() - 1);
                 player.updateInventory();
-
-                world.spawnParticle(Particle.EXPLOSION_LARGE, UberDropBlock.getLocation(), 1);
-                world.playSound(UberDropBlock.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1, 1.3F);
             } catch (NumberFormatException ignored) {
 
             }
         }
+
+        world.spawnParticle(Particle.EXPLOSION_LARGE, UberDropBlock.getLocation(), 1);
+        world.playSound(UberDropBlock.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1, 1.3F);
     }
 }
