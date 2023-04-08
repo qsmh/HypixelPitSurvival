@@ -28,6 +28,7 @@ public class RemoveItemChecker {
                         String loreIndexZero = itemMeta.getLore().get(0);
 
                         if (loreIndexZero.equals(TheHypixelPitSurvival.getPlugin().getConfig().getString("special-item-lore"))){
+                            player.getWorld().dropItem(player.getLocation(), item);
                             player.getInventory().remove(item);
                             player.updateInventory();
                         }
