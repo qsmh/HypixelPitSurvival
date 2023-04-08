@@ -144,6 +144,35 @@ public class MysticWell implements Listener {
         return mysticWell;
     }
 
+    @EventHandler
+    public void onMysticWellBroken(EntityPickupItemEvent event) {
+        Entity entity = event.getEntity();
+
+        if (!(entity instanceof Player)) {
+            return;
+        }
+
+        ItemStack item = event.getItem().getItemStack();
+
+        if (!item.hasItemMeta()) {
+            return;
+        }
+
+        ItemMeta itemMeta = item.getItemMeta();
+        assert itemMeta != null;
+
+        PersistentDataContainer itemData = itemMeta.getPersistentDataContainer();
+        String itemDisplayName = itemMeta.getDisplayName();
+
+        if (!itemDisplayName.equals(TheHypixelPitSurvival.getPlugin().getConfig().getString("mystic-well-displayname"))) {
+            return;
+        }
+
+        ItemStack mysticWell = createMysticWell(item);
+        item.setItemMeta(mysticWell.getItemMeta());
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomBlock"), PersistentDataType.STRING, "MysticWell");
+    }
+
     public static void addRecipeMysticWell() {
         NamespacedKey recipeKey = new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticWell");
 
