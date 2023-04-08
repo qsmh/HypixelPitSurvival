@@ -12,7 +12,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -22,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.MetadataValue;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -98,7 +96,7 @@ public class MysticWell implements Listener {
         hologram.setPersistent(true);
         hologram.setSilent(true);
 
-        ArmorStand hologram2 = (ArmorStand) world.spawnEntity(tileState.getLocation().add(0.5, 1.2, 0.5), EntityType.ARMOR_STAND);
+        ArmorStand hologram2 = (ArmorStand) world.spawnEntity(tileState.getLocation().add(0.5, 1.25, 0.5), EntityType.ARMOR_STAND);
 
         hologram2.setVisible(false);
         hologram2.setSmall(true);
@@ -118,30 +116,6 @@ public class MysticWell implements Listener {
 
         hologram.setMetadata("MysticWellHologram", new FixedMetadataValue(TheHypixelPitSurvival.getPlugin(), true));
         hologram2.setMetadata("MysticWellHologram2", new FixedMetadataValue(TheHypixelPitSurvival.getPlugin(), true));
-    }
-
-    public static ItemStack createMysticWell(ItemStack item) {
-        ItemStack mysticWell = item;
-        if (mysticWell == null) {
-            mysticWell = new ItemStack(Material.ENCHANTING_TABLE, 1);
-        }
-        ItemMeta mysticWellMeta = mysticWell.getItemMeta();
-        if (mysticWellMeta == null) {
-            mysticWellMeta = Bukkit.getItemFactory().getItemMeta(Material.ENCHANTING_TABLE);
-        }
-
-        assert mysticWellMeta != null;
-        mysticWellMeta.setDisplayName(TheHypixelPitSurvival.getPlugin().getConfig().getString("mystic-well-displayname"));
-        List<String> lore = new ArrayList<>();
-        lore.add(TheHypixelPitSurvival.getPlugin().getConfig().getString("special-item-lore"));
-        lore.add(ChatColor.GRAY + "Used to enchant mystic items");
-        mysticWellMeta.setLore(lore);
-
-        PersistentDataContainer data = mysticWellMeta.getPersistentDataContainer();
-        data.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "MysticWell");
-
-        mysticWell.setItemMeta(mysticWellMeta);
-        return mysticWell;
     }
 
     @EventHandler
@@ -171,6 +145,30 @@ public class MysticWell implements Listener {
         ItemStack mysticWell = createMysticWell(item);
         item.setItemMeta(mysticWell.getItemMeta());
         itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomBlock"), PersistentDataType.STRING, "MysticWell");
+    }
+
+    public static ItemStack createMysticWell(ItemStack item) {
+        ItemStack mysticWell = item;
+        if (mysticWell == null) {
+            mysticWell = new ItemStack(Material.ENCHANTING_TABLE, 1);
+        }
+        ItemMeta mysticWellMeta = mysticWell.getItemMeta();
+        if (mysticWellMeta == null) {
+            mysticWellMeta = Bukkit.getItemFactory().getItemMeta(Material.ENCHANTING_TABLE);
+        }
+
+        assert mysticWellMeta != null;
+        mysticWellMeta.setDisplayName(TheHypixelPitSurvival.getPlugin().getConfig().getString("mystic-well-displayname"));
+        List<String> lore = new ArrayList<>();
+        lore.add(TheHypixelPitSurvival.getPlugin().getConfig().getString("special-item-lore"));
+        lore.add(ChatColor.GRAY + "Used to enchant mystic items");
+        mysticWellMeta.setLore(lore);
+
+        PersistentDataContainer data = mysticWellMeta.getPersistentDataContainer();
+        data.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "MysticWell");
+
+        mysticWell.setItemMeta(mysticWellMeta);
+        return mysticWell;
     }
 
     public static void addRecipeMysticWell() {
