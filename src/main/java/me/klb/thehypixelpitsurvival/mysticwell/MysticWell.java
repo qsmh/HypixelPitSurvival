@@ -1,17 +1,18 @@
 package me.klb.thehypixelpitsurvival.mysticwell;
 
+import com.mysql.cj.exceptions.CJConnectionFeatureNotAvailableException;
 import me.klb.thehypixelpitsurvival.TheHypixelPitSurvival;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -20,6 +21,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -58,57 +61,63 @@ public class MysticWell implements Listener {
     }
 
     @EventHandler
-    public void onMysticWellPlaced(BlockPlaceEvent event){
+    public void onMysticWellPlaced(BlockPlaceEvent event) {
+        Player player = event.getPlayer();
+        World world = player.getWorld();
         Block block = event.getBlockPlaced();
         BlockState blockState = block.getState();
         ItemStack item = event.getItemInHand();
         ItemMeta itemMeta = item.getItemMeta();
 
-        if (itemMeta == null || !(blockState instanceof TileState tileState)){
+        if (itemMeta == null || !(blockState instanceof TileState tileState)) {
             return;
         }
 
         PersistentDataContainer itemData = itemMeta.getPersistentDataContainer();
 
-        if (!itemData.has(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING)){
+        if (!itemData.has(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING)) {
             return;
         }
 
-        if (!Objects.equals(itemData.get(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING), "MysticWell")){
+        if (!Objects.equals(itemData.get(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING), "MysticWell")) {
             return;
         }
 
         PersistentDataContainer blockData = tileState.getPersistentDataContainer();
         blockData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomBlock"), PersistentDataType.STRING, "MysticWell");
-    }
 
-    @EventHandler
-    public void onMysticWellBroken(EntityPickupItemEvent event){
-        Entity entity = event.getEntity();
+        ArmorStand hologram = (ArmorStand) world.spawnEntity(tileState.getLocation().add(0.5, 1.5, 0.5), EntityType.ARMOR_STAND);
 
-        if (!(entity instanceof Player)){
-            return;
-        }
+        hologram.setVisible(false);
+        hologram.setSmall(true);
+        hologram.setMarker(true);
+        hologram.setArms(false);
+        hologram.setInvulnerable(true);
+        hologram.setCollidable(false);
+        hologram.setGravity(false);
+        hologram.setPersistent(true);
+        hologram.setSilent(true);
 
-        ItemStack item = event.getItem().getItemStack();
+        ArmorStand hologram2 = (ArmorStand) world.spawnEntity(tileState.getLocation().add(0.5, 1.2, 0.5), EntityType.ARMOR_STAND);
 
-        if (!item.hasItemMeta()){
-            return;
-        }
+        hologram2.setVisible(false);
+        hologram2.setSmall(true);
+        hologram2.setMarker(true);
+        hologram2.setArms(false);
+        hologram2.setInvulnerable(true);
+        hologram2.setCollidable(false);
+        hologram2.setGravity(false);
+        hologram2.setPersistent(true);
+        hologram2.setSilent(true);
 
-        ItemMeta itemMeta = item.getItemMeta();
-        assert itemMeta != null;
+        hologram.setCustomName(Objects.requireNonNull(TheHypixelPitSurvival.getPlugin().getConfig().getString("mystic-well-hologram-name")).toUpperCase());
+        hologram.setCustomNameVisible(true);
 
-        PersistentDataContainer itemData = itemMeta.getPersistentDataContainer();
-        String itemDisplayName = itemMeta.getDisplayName();
+        hologram2.setCustomName(ChatColor.GRAY + "Item Enchants");
+        hologram2.setCustomNameVisible(true);
 
-        if (!itemDisplayName.equals(TheHypixelPitSurvival.getPlugin().getConfig().getString("mystic-well-displayname"))){
-            return;
-        }
-
-        ItemStack mysticWell = createMysticWell(item);
-        item.setItemMeta(mysticWell.getItemMeta());
-        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomBlock"), PersistentDataType.STRING, "MysticWell");
+        hologram.setMetadata("MysticWellHologram", new FixedMetadataValue(TheHypixelPitSurvival.getPlugin(), true));
+        hologram2.setMetadata("MysticWellHologram2", new FixedMetadataValue(TheHypixelPitSurvival.getPlugin(), true));
     }
 
     public static ItemStack createMysticWell(ItemStack item) {

@@ -8,14 +8,12 @@ import me.klb.thehypixelpitsurvival.customitems.itemProcedures.FirstAidEgg;
 import me.klb.thehypixelpitsurvival.customitems.itemProcedures.PerunsStick;
 import me.klb.thehypixelpitsurvival.customitems.itemProcedures.PhilosophersCactus;
 import me.klb.thehypixelpitsurvival.customitems.itemProcedures.YummyBone;
+import me.klb.thehypixelpitsurvival.fixes.HologramRemover;
 import me.klb.thehypixelpitsurvival.listeners.*;
 import me.klb.thehypixelpitsurvival.megastreaks.uber.functions.UberDrop;
 import me.klb.thehypixelpitsurvival.mystics.darkpants.functions.DarkPantsVenom;
 import me.klb.thehypixelpitsurvival.mysticwell.MysticWell;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
-import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -24,14 +22,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public final class TheHypixelPitSurvival extends JavaPlugin implements Listener {
@@ -73,6 +67,8 @@ public final class TheHypixelPitSurvival extends JavaPlugin implements Listener 
         getServer().getPluginManager().registerEvents(new PerunsStick(), this);
         getServer().getPluginManager().registerEvents(new FirstAidEgg(), this);
         getServer().getPluginManager().registerEvents(new YummyBone(), this);
+
+        getServer().getPluginManager().registerEvents(new HologramRemover(), this);
 
         // Recipies
         MysticWell.addRecipeMysticWell();

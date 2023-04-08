@@ -3,7 +3,8 @@ fall-damage: true # No fall damage
 PerunsStickCooldown: 5
 
 special-item-lore: §eSpecial item # §e is yellow
-mystic-well-displayname: §9Mystic Well
+mystic-well-displayname: §dMystic Well
+mystic-well-hologram-name: §d§lMystic Well
 
 freshPants-Lore: Used in the mystic well
 freshPants-Lore2: Also, a fashion statement

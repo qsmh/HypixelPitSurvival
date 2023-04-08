@@ -35,7 +35,7 @@ public class YummyBone implements Listener {
         }
 
         boolean hasYummyBone = false;
-        ItemMeta itemMeta = null;
+        ItemMeta itemMeta;
 
         if (inventory.getItemInMainHand().getType() == Material.BONE) {
             itemMeta = inventory.getItemInMainHand().getItemMeta();
