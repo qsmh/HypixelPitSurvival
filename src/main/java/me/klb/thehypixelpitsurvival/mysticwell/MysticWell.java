@@ -1,6 +1,5 @@
 package me.klb.thehypixelpitsurvival.mysticwell;
 
-import com.mysql.cj.exceptions.CJConnectionFeatureNotAvailableException;
 import me.klb.thehypixelpitsurvival.TheHypixelPitSurvival;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -12,15 +11,13 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -32,30 +29,48 @@ import static org.bukkit.Bukkit.getServer;
 
 public class MysticWell implements Listener {
 
-    public void createMysticWellInventory(){
+    public ArmorStand[] getHolograms(Location location) {
+        List<ArmorStand> holograms = new ArrayList<>();
+        World world = location.getWorld();
 
+        assert world != null;
+
+        for (Entity entity : world.getNearbyEntities(location, 1.5, 2, 1.5)) {
+            PersistentDataContainer entityData = entity.getPersistentDataContainer();
+
+            if (entity instanceof ArmorStand armorStand && entityData.has(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticWellHologram"), PersistentDataType.STRING)) {
+                holograms.add(armorStand);
+            }
+        }
+
+        return holograms.toArray(new ArmorStand[0]);
     }
 
     @EventHandler
-    public void onMysticWellInventoryClick(InventoryClickEvent event){
-        Inventory inventory = event.getInventory();
+    public void onMysticWellInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        Block block = event.getClickedBlock();
 
-        if (event.getView().getTitle().equals("Mystic Well")){
-            // Continue
-        }
-    }
-
-    @EventHandler
-    public void onMysticWellOpen(PlayerInteractEvent event){
-        if (event.getClickedBlock() == null){
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK){
             return;
         }
 
-        if (!(event.getClickedBlock().getState() instanceof TileState tileState)){
+        assert block != null;
+        BlockState blockState = block.getState();
+
+        if (!(blockState instanceof TileState)) {
             return;
         }
 
-        createMysticWellInventory();
+        ArmorStand[] armorStands = getHolograms(blockState.getLocation());
+
+        if (armorStands.length != 2) {
+            return;
+        }
+
+        event.setCancelled(true);
+
+        MysticWellEnchanting.createMysticWellInventory(player);
     }
 
     @EventHandler
@@ -85,6 +100,7 @@ public class MysticWell implements Listener {
         blockData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomBlock"), PersistentDataType.STRING, "MysticWell");
 
         ArmorStand hologram = (ArmorStand) world.spawnEntity(tileState.getLocation().add(0.5, 1.5, 0.5), EntityType.ARMOR_STAND);
+        PersistentDataContainer dataHologram = hologram.getPersistentDataContainer();
 
         hologram.setVisible(false);
         hologram.setSmall(true);
@@ -97,6 +113,7 @@ public class MysticWell implements Listener {
         hologram.setSilent(true);
 
         ArmorStand hologram2 = (ArmorStand) world.spawnEntity(tileState.getLocation().add(0.5, 1.25, 0.5), EntityType.ARMOR_STAND);
+        PersistentDataContainer dataHologram2 = hologram2.getPersistentDataContainer();
 
         hologram2.setVisible(false);
         hologram2.setSmall(true);
@@ -114,12 +131,12 @@ public class MysticWell implements Listener {
         hologram2.setCustomName(ChatColor.GRAY + "Item Enchants");
         hologram2.setCustomNameVisible(true);
 
-        hologram.setMetadata("MysticWellHologram", new FixedMetadataValue(TheHypixelPitSurvival.getPlugin(), true));
-        hologram2.setMetadata("MysticWellHologram2", new FixedMetadataValue(TheHypixelPitSurvival.getPlugin(), true));
+        dataHologram2.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticWellHologram"), PersistentDataType.STRING, "Hologram2");
+        dataHologram.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticWellHologram"), PersistentDataType.STRING, "Hologram");
     }
 
     @EventHandler
-    public void onMysticWellBroken(EntityPickupItemEvent event) {
+    public void onMysticWellPickedUp(EntityPickupItemEvent event) {
         Entity entity = event.getEntity();
 
         if (!(entity instanceof Player)) {
@@ -144,7 +161,7 @@ public class MysticWell implements Listener {
 
         ItemStack mysticWell = createMysticWell(item);
         item.setItemMeta(mysticWell.getItemMeta());
-        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomBlock"), PersistentDataType.STRING, "MysticWell");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "MysticWell");
     }
 
     public static ItemStack createMysticWell(ItemStack item) {

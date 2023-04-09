@@ -13,6 +13,7 @@ import me.klb.thehypixelpitsurvival.listeners.*;
 import me.klb.thehypixelpitsurvival.megastreaks.uber.functions.UberDrop;
 import me.klb.thehypixelpitsurvival.mystics.darkpants.functions.DarkPantsVenom;
 import me.klb.thehypixelpitsurvival.mysticwell.MysticWell;
+import me.klb.thehypixelpitsurvival.mysticwell.MysticWellEnchanting;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -58,6 +59,7 @@ public final class TheHypixelPitSurvival extends JavaPlugin implements Listener 
 
         // Mystics, Fresh, etc
         getServer().getPluginManager().registerEvents(new MysticWell(), this);
+        getServer().getPluginManager().registerEvents(new MysticWellEnchanting(), this);
         getServer().getPluginManager().registerEvents(new PhilosophersCactus(), this);
         getServer().getPluginManager().registerEvents(new DarkPantsVenom(), this);
 
@@ -68,6 +70,7 @@ public final class TheHypixelPitSurvival extends JavaPlugin implements Listener 
         getServer().getPluginManager().registerEvents(new FirstAidEgg(), this);
         getServer().getPluginManager().registerEvents(new YummyBone(), this);
 
+        // Fixes
         getServer().getPluginManager().registerEvents(new HologramRemover(), this);
 
         // Recipies

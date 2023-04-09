@@ -3,6 +3,7 @@ package me.klb.thehypixelpitsurvival.listeners;
 import fr.minuskube.netherboard.Netherboard;
 import fr.minuskube.netherboard.bukkit.BPlayerBoard;
 import me.klb.thehypixelpitsurvival.TheHypixelPitSurvival;
+import me.klb.thehypixelpitsurvival.fixes.PersistentDataChecker;
 import me.klb.thehypixelpitsurvival.itemchecker.ReplaceItemChecker;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -32,6 +33,7 @@ public class onJoinLeaveListener implements Listener {
         e.setJoinMessage(ChatColor.GREEN + "Welcome, " + player.getDisplayName() + ".");
         createScoreBoard(e);
         ReplaceItemChecker.runItemChecker(player);
+        PersistentDataChecker.checkPersistentData(player);
         updateScoreboard(player); // Should always be the last to run
     }
 

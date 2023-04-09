@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class listFreshPantsEnchantments {
+public class listPantEnchantments {
     public static List<Map<String, Object>> getList() {
         List<Map<String, Object>> enchantments = new ArrayList<>();
 

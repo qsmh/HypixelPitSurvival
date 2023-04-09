@@ -194,6 +194,7 @@ public class itemManager {
 
         PersistentDataContainer itemData = meta.getPersistentDataContainer();
         itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "RedFresh");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticItem"), PersistentDataType.STRING, "Fresh");
 
         item.setItemMeta(meta);
         redFresh = item;
@@ -218,6 +219,7 @@ public class itemManager {
 
         PersistentDataContainer itemData = meta.getPersistentDataContainer();
         itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "OrangeFresh");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticItem"), PersistentDataType.STRING, "Fresh");
 
         item.setItemMeta(meta);
         orangeFresh = item;
@@ -242,6 +244,7 @@ public class itemManager {
 
         PersistentDataContainer itemData = meta.getPersistentDataContainer();
         itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "YellowFresh");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticItem"), PersistentDataType.STRING, "Fresh");
 
         item.setItemMeta(meta);
         yellowFresh = item;
@@ -266,6 +269,7 @@ public class itemManager {
 
         PersistentDataContainer itemData = meta.getPersistentDataContainer();
         itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "GreenFresh");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticItem"), PersistentDataType.STRING, "Fresh");
 
         item.setItemMeta(meta);
         greenFresh = item;
@@ -290,6 +294,7 @@ public class itemManager {
 
         PersistentDataContainer itemData = meta.getPersistentDataContainer();
         itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "BlueFresh");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticItem"), PersistentDataType.STRING, "Fresh");
 
         item.setItemMeta(meta);
         blueFresh = item;
