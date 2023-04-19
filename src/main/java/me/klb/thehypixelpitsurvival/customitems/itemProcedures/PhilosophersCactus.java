@@ -134,6 +134,10 @@ public class PhilosophersCactus implements Listener {
             player.playSound(player, Sound.ENTITY_SILVERFISH_AMBIENT, 2F, 1.15F);
             player.playSound(player, Sound.ENTITY_SILVERFISH_AMBIENT, 3F, 1.35F);
             player.playSound(player, Sound.ENTITY_SILVERFISH_AMBIENT, 2F, 1.15F);
+            player.playSound(player, Sound.ENTITY_SILVERFISH_AMBIENT, 3F, 1.35F);
+            player.playSound(player, Sound.ENTITY_SILVERFISH_AMBIENT, 2F, 1.50F);
+            player.playSound(player, Sound.ENTITY_SILVERFISH_AMBIENT, 3F, 1.05F);
+            player.playSound(player, Sound.ENTITY_SILVERFISH_AMBIENT, 2F, 1.15F);
 
             removePhilosophersCactus(player);
             player.closeInventory();
