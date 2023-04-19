@@ -15,11 +15,12 @@ ironZombieXPReward: 50
 1/4diamondZombieXPGoldReward: 100
 
 ironSkeletonGoldReward: 35.10
-1/4diamondSkeletonGoldReward: 55.25
+1/4diamondSkeletonGoldReward: 55.257
 ironSkeletonXPReward: 55
 1/4diamondSkeletonXPGoldReward: 110
 
 PinkEveGoldReward: 50000.50
+PinkEveXPReward: 10000
 PinkEveLightingStrikeDamage: 2 # True damage
 PinkEveMaxDogs: 72 # Max per world
 PinkEveMaxJimpys: 15 # Max per world
@@ -34,6 +35,7 @@ PinkEveSlimeSize: 7
 PinkEveSlimeName: "JIMPY THE SLIME OVERLORD"
 
 UwUKieranGoldReward: 75000.75
+UwUKieranXPReward: 25000
 UwUKieranBhopTime: 12 # In seconds
 UwUKieranMaxBodyGuards: 30 # Max per world
 UwUKieranChatString: "<UwU_Kieran> "

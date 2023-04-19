@@ -8,6 +8,7 @@ import me.klb.thehypixelpitsurvival.creatures.customcreatures.customattacks.pink
 import me.klb.thehypixelpitsurvival.creatures.customcreatures.customattacks.pinkeveattacks.PinkEvePotionAttack;
 import me.klb.thehypixelpitsurvival.creatures.customcreatures.customattacks.pinkeveattacks.PinkEveSlimeSpawnAttack;
 import me.klb.thehypixelpitsurvival.customitems.itemMetaData.itemManager;
+import me.klb.thehypixelpitsurvival.megastreaks.uber.functions.UberDrop;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
@@ -103,7 +104,7 @@ public class PinkEve implements Listener {
         PersistentDataContainer data = entity.getPersistentDataContainer();
         data.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomEntity"), PersistentDataType.STRING, "PinkEve");
         data.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "GoldReward"), PersistentDataType.DOUBLE, TheHypixelPitSurvival.getPlugin().getConfig().getDouble("PinkEveGoldReward"));
-
+        data.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "XPReward"), PersistentDataType.DOUBLE, TheHypixelPitSurvival.getPlugin().getConfig().getDouble("PinkEveXPReward"));
         entity.setPersistent(false); // This will make it despawn
     }
 
@@ -277,6 +278,9 @@ public class PinkEve implements Listener {
                     Item dyeItem = event.getEntity().getWorld().dropItem(event.getEntity().getLocation(), dyeStack);
                     dyeItem.setPickupDelay(Integer.MAX_VALUE);;
                     dyeItem.setVelocity(direction);
+
+                    ItemStack uberDrop = UberDrop.createUberDrop();
+                    entityWorld.dropItem(entity.getLocation(), uberDrop);
 
                     new BukkitRunnable(){
 
