@@ -29,6 +29,7 @@ public class itemManager {
     public static ItemStack yellowFresh;
     public static ItemStack greenFresh;
     public static ItemStack blueFresh;
+    public static ItemStack aquaFresh;
 
     public static void initItemMetaData(){
         createFunkyFeather();
@@ -43,6 +44,7 @@ public class itemManager {
         createYellowFresh();
         createGreenFresh();
         createBlueFresh();
+        createAquaFresh();
     }
 
     private static void createFunkyFeather(){
@@ -298,5 +300,31 @@ public class itemManager {
 
         item.setItemMeta(meta);
         blueFresh = item;
+    }
+
+    private static void createAquaFresh(){
+        ItemStack item = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+        ItemMeta meta = item.getItemMeta();
+
+        LeatherArmorMeta leatherArmorMeta = (LeatherArmorMeta) meta;
+        leatherArmorMeta.setColor(Color.AQUA);
+
+        meta.setUnbreakable(true);
+
+        meta.setDisplayName(ChatColor.AQUA + "Fresh Aqua Pants");
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.GRAY + "Kept on death");
+        lore.add("");
+        lore.add(ChatColor.AQUA + TheHypixelPitSurvival.getPlugin().getConfig().getString("freshPants-Lore"));
+        lore.add(ChatColor.AQUA + TheHypixelPitSurvival.getPlugin().getConfig().getString("freshAqua-Lore"));
+        lore.add(ChatColor.AQUA + TheHypixelPitSurvival.getPlugin().getConfig().getString("freshAqua-Lore2"));
+        meta.setLore(lore);
+
+        PersistentDataContainer itemData = meta.getPersistentDataContainer();
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "AquaFresh");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticItem"), PersistentDataType.STRING, "Fresh");
+
+        item.setItemMeta(meta);
+        aquaFresh = item;
     }
 }
