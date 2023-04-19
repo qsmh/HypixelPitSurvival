@@ -11,6 +11,7 @@ import me.klb.thehypixelpitsurvival.customitems.itemProcedures.YummyBone;
 import me.klb.thehypixelpitsurvival.fixes.HologramRemover;
 import me.klb.thehypixelpitsurvival.listeners.*;
 import me.klb.thehypixelpitsurvival.megastreaks.uber.functions.UberDrop;
+import me.klb.thehypixelpitsurvival.mystics.aquapants.functions.onPlayerFishedListener;
 import me.klb.thehypixelpitsurvival.mystics.darkpants.functions.DarkPantsVenom;
 import me.klb.thehypixelpitsurvival.mysticwell.MysticWell;
 import me.klb.thehypixelpitsurvival.mysticwell.MysticWellEnchanting;
@@ -62,6 +63,7 @@ public final class TheHypixelPitSurvival extends JavaPlugin implements Listener 
         getServer().getPluginManager().registerEvents(new MysticWellEnchanting(), this);
         getServer().getPluginManager().registerEvents(new PhilosophersCactus(), this);
         getServer().getPluginManager().registerEvents(new DarkPantsVenom(), this);
+        getServer().getPluginManager().registerEvents(new onPlayerFishedListener(), this);
 
         // Megastreaks, megastreak items, etc
         getServer().getPluginManager().registerEvents(new UberDrop(), this);
