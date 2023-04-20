@@ -11,6 +11,10 @@ public class onEntityDamagedListener implements Listener {
     public void onEntityDamaged(EntityDamageByEntityEvent event){
         Entity damager = event.getDamager();
 
+        if (damager.getType() == EntityType.ENDER_CRYSTAL) {
+            event.setCancelled(true);
+        }
+
         if (damager instanceof Projectile && ((Projectile) damager).getShooter() instanceof Player) {
             ActionBarHearts.runActionBarHearts(event, true);
         } else if (damager instanceof Player) {

@@ -178,7 +178,7 @@ public class MysticWell implements Listener {
         mysticWellMeta.setDisplayName(TheHypixelPitSurvival.getPlugin().getConfig().getString("mystic-well-displayname"));
         List<String> lore = new ArrayList<>();
         lore.add(TheHypixelPitSurvival.getPlugin().getConfig().getString("special-item-lore"));
-        lore.add(ChatColor.GRAY + "Used to enchant mystic items");
+        lore.add(ChatColor.GRAY + "Used to enchant mystic items.");
         mysticWellMeta.setLore(lore);
 
         PersistentDataContainer data = mysticWellMeta.getPersistentDataContainer();

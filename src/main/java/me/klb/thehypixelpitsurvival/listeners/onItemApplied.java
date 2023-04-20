@@ -2,7 +2,6 @@ package me.klb.thehypixelpitsurvival.listeners;
 
 import me.klb.thehypixelpitsurvival.TheHypixelPitSurvival;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

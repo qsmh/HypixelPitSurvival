@@ -3,6 +3,7 @@ version: '${project.version}'
 main: me.klb.thehypixelpitsurvival.TheHypixelPitSurvival
 api-version: 1.19
 authors: [ KLB ]
+depend: [TitleManager]
 description: Hypixel Pit in 1.19.2 survival
 commands:
   smite:

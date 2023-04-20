@@ -46,8 +46,6 @@ public class PerunsStick implements Listener {
                             world.strikeLightning(targetBlock.getLocation());
                         }
                     }else{
-                        ItemStack uberDrop = createUberDrop();
-                        player.getInventory().addItem(uberDrop);
                         player.sendMessage(ChatColor.RED + "Cooldown: Wait " + ChatColor.GOLD + (cooldownint - (System.currentTimeMillis() - cooldown.get(player.getUniqueId()))) / 1000 + ChatColor.RED + " seconds.");
                     }
                 }

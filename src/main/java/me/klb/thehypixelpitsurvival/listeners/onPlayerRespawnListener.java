@@ -1,5 +1,7 @@
 package me.klb.thehypixelpitsurvival.listeners;
 
+import me.klb.thehypixelpitsurvival.other.TitleBuilder;
+import net.kyori.adventure.audience.Audience;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,6 +11,6 @@ public class onPlayerRespawnListener implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event){
         Player player = event.getPlayer();
-        player.sendMessage("You respawned.");
+        TitleBuilder.showMyTitle((Audience) player);
     }
 }

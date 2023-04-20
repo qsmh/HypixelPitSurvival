@@ -4,16 +4,14 @@ import me.klb.thehypixelpitsurvival.customitems.itemMetaData.itemManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.FishHook;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class onPlayerFishedListener implements Listener {
@@ -33,8 +31,12 @@ public class onPlayerFishedListener implements Listener {
             return;
         }
 
+        if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH){
+            return;
+        }
+
         Random random = new Random();
-        int randomInt = random.nextInt(11);
+        int randomInt = random.nextInt(25);
 
         if (randomInt == 1){
             Item caughtItem  = (Item) entityCaught;
@@ -42,9 +44,9 @@ public class onPlayerFishedListener implements Listener {
             ItemMeta aquaPantsMeta = aquaPants.getItemMeta();
 
             caughtItem.setItemStack(aquaPants);
-            player.playSound(player, Sound.ENTITY_ENDER_DRAGON_GROWL, 2, 0.75F);
-            player.spawnParticle(Particle.WATER_SPLASH, fishHook.getLocation(), 15);
-            player.sendMessage(ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "RARE! " + ChatColor.RESET + ChatColor.GRAY + "You found " + ChatColor.AQUA + aquaPantsMeta.getDisplayName() + ".");
+            player.playSound(player, Sound.ENTITY_ENDER_DRAGON_GROWL, 5, 1);
+            player.spawnParticle(Particle.WATER_SPLASH, fishHook.getLocation().add(0, 0.2, 0), 50);
+            player.sendMessage(ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "RARE! " + ChatColor.RESET + ChatColor.GRAY + "You found " + ChatColor.AQUA + aquaPantsMeta.getDisplayName() + ChatColor.GRAY + " while fishing.");
         }
     }
 }
