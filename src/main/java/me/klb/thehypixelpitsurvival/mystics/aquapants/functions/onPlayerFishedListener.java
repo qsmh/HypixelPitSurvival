@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class onPlayerFishedListener implements Listener {
     @EventHandler
-    public void onPLayerFished(PlayerFishEvent event){
+    public void onPlayerFished(PlayerFishEvent event){
         // I know this is supposed to be in the 'listeners' package, but this feels right, lol
 
         Player player = event.getPlayer();

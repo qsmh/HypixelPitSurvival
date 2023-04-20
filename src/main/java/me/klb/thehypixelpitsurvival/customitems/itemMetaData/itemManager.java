@@ -30,6 +30,7 @@ public class itemManager {
     public static ItemStack greenFresh;
     public static ItemStack blueFresh;
     public static ItemStack aquaFresh;
+    public static ItemStack freshMysticBow;
 
     public static void initItemMetaData(){
         createFunkyFeather();
@@ -45,6 +46,7 @@ public class itemManager {
         createGreenFresh();
         createBlueFresh();
         createAquaFresh();
+        createFreshMysticBow();
     }
 
     private static void createFunkyFeather(){
@@ -326,5 +328,23 @@ public class itemManager {
 
         item.setItemMeta(meta);
         aquaFresh = item;
+    }
+
+    private static void createFreshMysticBow() {
+        ItemStack item = new ItemStack(Material.BOW, 1);
+        ItemMeta meta = item.getItemMeta();
+
+        meta.setDisplayName(ChatColor.AQUA + "Mystic Bow");
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.GRAY + "Kept on death");
+        lore.add("");
+        lore.add(TheHypixelPitSurvival.getPlugin().getConfig().getString("freshPants-Lore"));
+        meta.setLore(lore);
+
+        PersistentDataContainer itemData = meta.getPersistentDataContainer();
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "Fresh");
+
+        item.setItemMeta(meta);
+        freshMysticBow = item;
     }
 }
