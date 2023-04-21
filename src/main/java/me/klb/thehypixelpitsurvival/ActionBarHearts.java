@@ -29,6 +29,8 @@ public class ActionBarHearts {
         new BukkitRunnable() {
             @Override
             public void run() {
+                double damageDealt = event.getFinalDamage();
+                int damageHearts = (int) Math.round(damageDealt / 2);
                 double health = livingEntity.getHealth();
                 double maxHealth = Objects.requireNonNull(livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue();
                 if (health > maxHealth) {
@@ -57,10 +59,12 @@ public class ActionBarHearts {
                 sb.append(HEALTH_ICON.repeat(Math.max(0, filledHearts)));
 
                 // Adds half-filled hearts to the display message
-                if (filledHalfHearts > 0) {
-                    sb.append(HALF_HEALTH_ICON);
-                }
+               // if (filledHalfHearts > 0) {
+              //      sb.append(HALF_HEALTH_ICON);
+              //  }
 
+
+                sb.append(HALF_HEALTH_ICON.repeat(Math.max(0, damageHearts)));
                 // Adds empty hearts to the display message
                 sb.append(EMPTY_HEALTH_ICON.repeat(Math.max(0, emptyHearts)));
 
