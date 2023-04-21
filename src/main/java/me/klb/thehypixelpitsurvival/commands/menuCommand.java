@@ -24,8 +24,11 @@ public class menuCommand implements CommandExecutor {
             ItemStack philosophersCactus = itemManager.philosophersCactus;
             ItemStack chunkOfVile = itemManager.chunkOfVile;
             ItemStack yummyBone = itemManager.yummyBone;
+            ItemStack aquaPants = itemManager.aquaFresh;
+            ItemStack freshSword = itemManager.freshMysticSword;
+            ItemStack freshBow = itemManager.freshMysticBow;
 
-            ItemStack[] contents = {illegalTotems, perunsStick, firstAidEgg, funkyFeather, philosophersCactus, chunkOfVile, yummyBone};
+            ItemStack[] contents = {illegalTotems, perunsStick, firstAidEgg, funkyFeather, philosophersCactus, chunkOfVile, yummyBone, aquaPants, freshSword, freshBow};
             menu.addItem(contents);
             player.openInventory(menu);
         }

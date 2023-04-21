@@ -8,6 +8,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -345,16 +346,18 @@ public class itemManager {
         ItemStack item = new ItemStack(Material.BOW, 1);
         ItemMeta meta = item.getItemMeta();
 
-        Enchantment arrowDamageEnchantment = Enchantment.ARROW_DAMAGE;
+        Enchantment bowGlow = Enchantment.DURABILITY;
 
-        meta.addEnchant(arrowDamageEnchantment, TheHypixelPitSurvival.getPlugin().getConfig().getInt("freshMysticBowDamage"), true);
+        meta.addEnchant(bowGlow, 1, true);
+
+        meta.setUnbreakable(true);
 
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setDisplayName(ChatColor.AQUA + "Mystic Bow");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Kept on death");
         lore.add("");
-        lore.add(TheHypixelPitSurvival.getPlugin().getConfig().getString("freshPants-Lore"));
+        lore.add(ChatColor.GRAY + TheHypixelPitSurvival.getPlugin().getConfig().getString("freshPants-Lore"));
         meta.setLore(lore);
 
         PersistentDataContainer itemData = meta.getPersistentDataContainer();
@@ -368,22 +371,34 @@ public class itemManager {
         ItemStack item = new ItemStack(Material.GOLDEN_SWORD, 1);
         ItemMeta meta = item.getItemMeta();
 
-        AttributeModifier attributeModifier = new AttributeModifier(
+        AttributeModifier damageModifier = new AttributeModifier(
                 UUID.randomUUID(), // A unique UUID for the modifier
-                "additionalDamage", // A name for the modifier
+                "damage", // A name for the modifier
                 TheHypixelPitSurvival.getPlugin().getConfig().getDouble("freshMysticSwordDamage"), // The value of the modifier
                 AttributeModifier.Operation.ADD_NUMBER, // The operation to apply the modifier
                 null // Set to null for no specific equipment slot
         );
 
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE,attributeModifier);
+        AttributeModifier attackSpeedModifier = new AttributeModifier(
+                UUID.randomUUID(), // A unique UUID for the modifier
+                "attack_speed", // A name for the modifier
+                TheHypixelPitSurvival.getPlugin().getConfig().getDouble("freshMysticSwordAttackSpeed"), // The value of the modifier
+                AttributeModifier.Operation.ADD_NUMBER, // The operation to apply the modifier
+                null // Set to null for no specific equipment slot
+        );
+
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damageModifier);
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, attackSpeedModifier);
+
+        meta.setUnbreakable(true);
 
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.setDisplayName(ChatColor.YELLOW + "Mystic Sword");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Kept on death");
         lore.add("");
-        lore.add(TheHypixelPitSurvival.getPlugin().getConfig().getString("freshPants-Lore"));
+        lore.add(ChatColor.GRAY + TheHypixelPitSurvival.getPlugin().getConfig().getString("freshPants-Lore"));
         meta.setLore(lore);
 
         PersistentDataContainer itemData = meta.getPersistentDataContainer();
