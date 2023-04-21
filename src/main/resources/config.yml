@@ -12,8 +12,8 @@ freshPants-Lore2: Also, a fashion statement
 freshAqua-Lore: Bypasses Mysticism
 freshAqua-Lore2: Aqua obtained from fishing!
 
-freshMysticBowDamage: 1 # Adds 1 damage to the sword, int only
-freshMysticSwordDamage: 1.5 # Adds 1.5 damage to the sword, double/int
+freshMysticSwordDamage: 7 # Sets sword damage
+freshMysticSwordAttackSpeed: -2.4000000953674316 # Leave this value alone
 
 ironZombieGoldReward: 30.05
 1/4diamondZombieGoldReward: 50.05
