@@ -67,7 +67,7 @@ public class ActionBarHearts {
 
                 sb.append(HALF_HEALTH_ICON.repeat(Math.max(0, damageHearts)));
                 // Adds empty hearts to the display message
-                sb.append(EMPTY_HEALTH_ICON.repeat(Math.max(0, emptyHearts)));
+                sb.append(EMPTY_HEALTH_ICON.repeat(Math.max(0, 10 - (filledHearts + damageHearts))));
 
                 boolean hasExtraHealth = false;
                 double extraHealth = health - (filledHearts + (filledHalfHearts > 0 ? 0.5 : 0)) * 2;
