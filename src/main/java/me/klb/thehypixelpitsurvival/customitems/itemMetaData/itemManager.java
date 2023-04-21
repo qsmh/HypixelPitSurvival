@@ -5,6 +5,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -15,6 +17,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class itemManager {
     public static ItemStack funkyFeather;
@@ -31,6 +34,7 @@ public class itemManager {
     public static ItemStack blueFresh;
     public static ItemStack aquaFresh;
     public static ItemStack freshMysticBow;
+    public static ItemStack freshMysticSword;
 
     public static void initItemMetaData(){
         createFunkyFeather();
@@ -47,6 +51,7 @@ public class itemManager {
         createBlueFresh();
         createAquaFresh();
         createFreshMysticBow();
+        createFreshMysticSword();
     }
 
     private static void createFunkyFeather(){
@@ -188,6 +193,7 @@ public class itemManager {
 
         meta.setUnbreakable(true);
 
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setDisplayName(ChatColor.RED + "Fresh Red Pants");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Kept on death");
@@ -213,6 +219,7 @@ public class itemManager {
 
         meta.setUnbreakable(true);
 
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setDisplayName(ChatColor.GOLD + "Fresh Orange Pants");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Kept on death");
@@ -238,6 +245,7 @@ public class itemManager {
 
         meta.setUnbreakable(true);
 
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setDisplayName(ChatColor.YELLOW + "Fresh Yellow Pants");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Kept on death");
@@ -263,6 +271,7 @@ public class itemManager {
 
         meta.setUnbreakable(true);
 
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setDisplayName(ChatColor.GREEN + "Fresh Green Pants");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Kept on death");
@@ -288,6 +297,7 @@ public class itemManager {
 
         meta.setUnbreakable(true);
 
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setDisplayName(ChatColor.BLUE + "Fresh Blue Pants");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Kept on death");
@@ -313,6 +323,7 @@ public class itemManager {
 
         meta.setUnbreakable(true);
 
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setDisplayName(ChatColor.AQUA + "Fresh Aqua Pants");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Kept on death");
@@ -334,6 +345,11 @@ public class itemManager {
         ItemStack item = new ItemStack(Material.BOW, 1);
         ItemMeta meta = item.getItemMeta();
 
+        Enchantment arrowDamageEnchantment = Enchantment.ARROW_DAMAGE;
+
+        meta.addEnchant(arrowDamageEnchantment, TheHypixelPitSurvival.getPlugin().getConfig().getInt("freshMysticBowDamage"), true);
+
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setDisplayName(ChatColor.AQUA + "Mystic Bow");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Kept on death");
@@ -346,5 +362,34 @@ public class itemManager {
 
         item.setItemMeta(meta);
         freshMysticBow = item;
+    }
+
+    private static void createFreshMysticSword() {
+        ItemStack item = new ItemStack(Material.GOLDEN_SWORD, 1);
+        ItemMeta meta = item.getItemMeta();
+
+        AttributeModifier attributeModifier = new AttributeModifier(
+                UUID.randomUUID(), // A unique UUID for the modifier
+                "additionalDamage", // A name for the modifier
+                TheHypixelPitSurvival.getPlugin().getConfig().getDouble("freshMysticSwordDamage"), // The value of the modifier
+                AttributeModifier.Operation.ADD_NUMBER, // The operation to apply the modifier
+                null // Set to null for no specific equipment slot
+        );
+
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE,attributeModifier);
+
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.setDisplayName(ChatColor.YELLOW + "Mystic Sword");
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.GRAY + "Kept on death");
+        lore.add("");
+        lore.add(TheHypixelPitSurvival.getPlugin().getConfig().getString("freshPants-Lore"));
+        meta.setLore(lore);
+
+        PersistentDataContainer itemData = meta.getPersistentDataContainer();
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "Fresh");
+
+        item.setItemMeta(meta);
+        freshMysticSword = item;
     }
 }
