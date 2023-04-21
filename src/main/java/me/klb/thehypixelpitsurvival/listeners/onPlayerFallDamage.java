@@ -1,6 +1,7 @@
 package me.klb.thehypixelpitsurvival.listeners;
 
 import me.klb.thehypixelpitsurvival.TheHypixelPitSurvival;
+import me.klb.thehypixelpitsurvival.other.TitleBuilder;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

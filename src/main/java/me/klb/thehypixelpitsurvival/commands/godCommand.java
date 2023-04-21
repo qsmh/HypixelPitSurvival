@@ -1,5 +1,6 @@
 package me.klb.thehypixelpitsurvival.commands;
 
+import me.klb.thehypixelpitsurvival.other.TitleBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
