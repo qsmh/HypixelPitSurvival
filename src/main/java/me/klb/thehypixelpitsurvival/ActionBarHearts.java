@@ -45,6 +45,10 @@ public class ActionBarHearts {
                     hearts = 10;
                 }
 
+                if (maxHealth > 10){
+                    maxHealth = 10;
+                }
+
                 // Calculates the number of filled hearts, half-hearts and empty hears
                 int filledHearts = (int) Math.floor(hearts);
                 int filledHalfHearts = (int) Math.round((hearts % 1) * 2);
@@ -59,15 +63,9 @@ public class ActionBarHearts {
                 // Adds filled hearts to the display message
                 sb.append(HEALTH_ICON.repeat(Math.max(0, filledHearts)));
 
-                // Adds half-filled hearts to the display message
-               // if (filledHalfHearts > 0) {
-              //      sb.append(HALF_HEALTH_ICON);
-              //  }
-
-
                 sb.append(HALF_HEALTH_ICON.repeat(Math.max(0, damageHearts)));
                 // Adds empty hearts to the display message
-                sb.append(EMPTY_HEALTH_ICON.repeat(Math.max(0, 10 - (filledHearts + damageHearts))));
+                sb.append(EMPTY_HEALTH_ICON.repeat((int) Math.max(0, maxHealth - (filledHearts + damageHearts))));
 
                 boolean hasExtraHealth = false;
                 double extraHealth = health - (filledHearts + (filledHalfHearts > 0 ? 0.5 : 0)) * 2;
