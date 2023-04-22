@@ -1,6 +1,7 @@
 package me.klb.thehypixelpitsurvival.mysticwell;
 
 import me.klb.thehypixelpitsurvival.TheHypixelPitSurvival;
+import me.klb.thehypixelpitsurvival.customitems.itemMetaData.itemManager;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -14,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.player.PlayerEditBookEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
@@ -163,7 +165,6 @@ public class MysticWell implements Listener {
         item.setItemMeta(mysticWell.getItemMeta());
         itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "MysticWell");
     }
-
     public static ItemStack createMysticWell(ItemStack item) {
         ItemStack mysticWell = item;
         if (mysticWell == null) {

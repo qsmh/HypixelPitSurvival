@@ -36,4 +36,9 @@ commands:
     usage: /<spawn>
     aliases: [spawnentity]
     permission: spawn
+  show:
+    description: Showoff your item!
+    usage: /<show>
+    aliases: [showoff, so]
+    permission: show
 
