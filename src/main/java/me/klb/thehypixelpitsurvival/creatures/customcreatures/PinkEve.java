@@ -231,11 +231,10 @@ public class PinkEve implements Listener {
 
                 World entityWorld = entity.getWorld();
 
-                ItemStack funkyFeather = itemManager.funkyFeather;
-                funkyFeather.setAmount(3);
-
                 entityWorld.playSound(entity.getLocation(), Sound.ENTITY_WITHER_DEATH, 1, 0.9F);
-                entityWorld.dropItem(entity.getLocation(), funkyFeather);
+
+                ItemStack uberDrop = UberDrop.createUberDrop();
+                entityWorld.dropItem(entity.getLocation(), uberDrop);
 
                 final int[] count = {0};
 
@@ -278,9 +277,6 @@ public class PinkEve implements Listener {
                     Item dyeItem = event.getEntity().getWorld().dropItem(event.getEntity().getLocation(), dyeStack);
                     dyeItem.setPickupDelay(Integer.MAX_VALUE);;
                     dyeItem.setVelocity(direction);
-
-                    ItemStack uberDrop = UberDrop.createUberDrop();
-                    entityWorld.dropItem(entity.getLocation(), uberDrop);
 
                     new BukkitRunnable(){
 

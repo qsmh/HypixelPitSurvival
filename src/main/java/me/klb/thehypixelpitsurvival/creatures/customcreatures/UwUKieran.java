@@ -227,14 +227,13 @@ public class UwUKieran implements Listener {
 
                 World entityWorld = entity.getWorld();
 
-                ItemStack funkyFeather = itemManager.funkyFeather;
-                ItemStack perunsStick = itemManager.perunsStick;
-                funkyFeather.setAmount(5);
-                perunsStick.setAmount(1);
-
                 entityWorld.playSound(entity.getLocation(), Sound.ENTITY_WITHER_DEATH, 1, 0.9F);
-                entityWorld.dropItem(entity.getLocation(), funkyFeather);
-                entityWorld.dropItem(entity.getLocation(), perunsStick);
+
+                ItemStack uberDrop = UberDrop.createUberDrop();
+                entityWorld.dropItem(entity.getLocation(), uberDrop);
+
+                uberDrop = UberDrop.createUberDrop();
+                entityWorld.dropItem(entity.getLocation(), uberDrop);
 
                 final int[] count = {0};
 
@@ -277,13 +276,6 @@ public class UwUKieran implements Listener {
                     Item dyeItem = event.getEntity().getWorld().dropItem(event.getEntity().getLocation(), dyeStack);
                     dyeItem.setPickupDelay(Integer.MAX_VALUE);;
                     dyeItem.setVelocity(direction);
-
-                    ItemStack uberDrop = UberDrop.createUberDrop();
-                    entityWorld.dropItem(entity.getLocation(), uberDrop);
-
-                    uberDrop = UberDrop.createUberDrop();
-                    entityWorld.dropItem(entity.getLocation(), uberDrop);
-
                     new BukkitRunnable(){
 
                         @Override
