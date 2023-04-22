@@ -39,6 +39,7 @@ public class onJoinLeaveListener implements Listener {
 
     public void createScoreBoard(PlayerJoinEvent e){
         Player player = e.getPlayer();
+        player.setDisplayName(ChatColor.GRAY + player.getDisplayName());
         PersistentDataContainer data = player.getPersistentDataContainer();
         Double gold = data.get(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "GoldBalance"), PersistentDataType.DOUBLE);
         Double xp = data.get(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "XPAmount"), PersistentDataType.DOUBLE);
