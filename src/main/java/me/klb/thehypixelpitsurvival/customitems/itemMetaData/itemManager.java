@@ -361,7 +361,8 @@ public class itemManager {
         meta.setLore(lore);
 
         PersistentDataContainer itemData = meta.getPersistentDataContainer();
-        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "Fresh");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "SwordFresh");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticItem"), PersistentDataType.STRING, "Fresh");
 
         item.setItemMeta(meta);
         freshMysticBow = item;
@@ -402,7 +403,8 @@ public class itemManager {
         meta.setLore(lore);
 
         PersistentDataContainer itemData = meta.getPersistentDataContainer();
-        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "Fresh");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "BowFresh");
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "MysticItem"), PersistentDataType.STRING, "Fresh");
 
         item.setItemMeta(meta);
         freshMysticSword = item;
