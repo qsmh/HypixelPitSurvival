@@ -87,6 +87,7 @@ public final class TheHypixelPitSurvival extends JavaPlugin implements Listener 
         getCommand("god").setExecutor(new godCommand());
         getCommand("menu").setExecutor(new menuCommand());
         getCommand("spawn").setExecutor(new spawnCustomEntityCommand());
+        getCommand("show").setExecutor(new showCommand());
 
         System.out.println("HPS: This plugin has successfully loaded.");
     }
