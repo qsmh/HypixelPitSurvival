@@ -28,6 +28,7 @@ public class itemManager {
     public static ItemStack philosophersCactus;
     public static ItemStack chunkOfVile;
     public static ItemStack yummyBone;
+    public static ItemStack combatSpade;
     public static ItemStack redFresh;
     public static ItemStack orangeFresh;
     public static ItemStack yellowFresh;
@@ -45,6 +46,7 @@ public class itemManager {
         createPhilosophersCactus();
         createChunkOfVile();
         createYummyBone();
+        createCombatSpade();
         createRedFresh();
         createOrangeFresh();
         createYellowFresh();
@@ -184,6 +186,24 @@ public class itemManager {
 
         item.setItemMeta(meta);
         yummyBone = item;
+    }
+
+    private static void createCombatSpade(){
+        ItemStack item = new ItemStack(Material.DIAMOND_SHOVEL, 1);
+        ItemMeta meta = item.getItemMeta();
+
+        meta.setDisplayName(ChatColor.YELLOW + "Combat Spade");
+        List<String> lore = new ArrayList<>();
+        lore.add(TheHypixelPitSurvival.getPlugin().getConfig().getString("special-item-lore"));
+        lore.add(ChatColor.GRAY + "Deals " + ChatColor.BLUE + "+1 damage" + ChatColor.GRAY + "per");
+        lore.add(ChatColor.AQUA + "diamond piece " + ChatColor.GRAY + "on enemy.");
+        meta.setLore(lore);
+
+        PersistentDataContainer itemData = meta.getPersistentDataContainer();
+        itemData.set(new NamespacedKey(TheHypixelPitSurvival.getPlugin(), "CustomItem"), PersistentDataType.STRING, "CombatSpade");
+
+        item.setItemMeta(meta);
+        combatSpade = item;
     }
     private static void createRedFresh(){
         ItemStack item = new ItemStack(Material.LEATHER_LEGGINGS, 1);
